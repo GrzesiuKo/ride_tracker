@@ -20,7 +20,7 @@ public class RideController {
 
 	@RequestMapping(value = "/ride", method = RequestMethod.PUT)
 	public @ResponseBody Ride createRide(@RequestBody Ride ride){
-		return null;
+		return rideService.createRide(ride);
 	}
 	
 	@RequestMapping(value = "/rides", method = RequestMethod.GET)
