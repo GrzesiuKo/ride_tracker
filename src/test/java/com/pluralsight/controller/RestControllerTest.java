@@ -13,6 +13,16 @@ import com.pluralsight.model.Ride;
 
 public class RestControllerTest {
 
+	@Test(timeout = 3000)
+	public void testCreateRide(){
+		RestTemplate restTemplate = new RestTemplate();
+		Ride ride = new Ride();
+		ride.setName("Bobsled Ride");
+		ride.setDuration(35);
+
+		restTemplate.put("http://localhost:8080/ride_tracker_war_exploded/ride", ride);
+	}
+
 	@Test(timeout=3000)
 	public void testGetRides() {
 		RestTemplate restTemplate = new RestTemplate();
