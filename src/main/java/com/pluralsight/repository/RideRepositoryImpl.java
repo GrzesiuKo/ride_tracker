@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pluralsight.repository.util.RideRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,17 +22,7 @@ public class RideRepositoryImpl implements RideRepository {
 	@Override
 	public List<Ride> getRides() {
 
-	    List<Ride> rides = jdbcTemplate.query("select * from ride", new RowMapper<Ride>() {
-            @Override
-            public Ride mapRow(ResultSet resultSet, int i) throws SQLException {
-                Ride ride = new Ride();
-
-                ride.setId(resultSet.getInt("id"));
-                ride.setName(resultSet.getString("name"));
-                ride.setDuration(resultSet.getInt("duration"));
-                return ride;
-            }
-        });
+	    List<Ride> rides = jdbcTemplate.query("select * from ride", new RideRowMapper());
 
 		return rides;
 	}
