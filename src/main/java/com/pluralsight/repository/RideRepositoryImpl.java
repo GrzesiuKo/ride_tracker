@@ -52,9 +52,10 @@ public class RideRepositoryImpl implements RideRepository {
         return getRide(id.intValue());
 	}
 
-    private Ride getRide(int intValue) {
-        //TODO
-        return null;
+    private Ride getRide(int id) {
+        Ride ride = jdbcTemplate.queryForObject("select * from ride where id = ?", new RideRowMapper(), id);
+
+        return ride;
 	}
 
 
